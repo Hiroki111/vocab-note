@@ -12,6 +12,7 @@
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/base.min.js"></script>
     <script type="text/javascript" src="/js/project.min.js"></script>
+    <script type="text/javascript" src="/js/www.js"></script>
 </head>
 <body>
     <div class="flex-center position-ref full-height">
