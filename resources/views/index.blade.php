@@ -17,8 +17,9 @@
     <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
         <div class="top-right links">
-            <a href="{{ url('/login') }}">Login</a>
-            <a href="{{ url('/register') }}">Register</a>
+            <!-- <a href="{{ url('/login') }}">Login</a> -->
+            <!-- <a href="{{ url('/register') }}">Register</a> -->
+            <a class="" data-toggle="modal" href="#new_word_modal">Register new word</a>
         </div>
         @endif
         <div class="content">
@@ -28,13 +29,34 @@
             <div class="card">
                 <div class="card-main">
                     <div class="card-inner margin-bottom-no">
-                        <a class="btn btn-flat waves-attach">Display/Hide  All</a>
+                        <div class="row">
+                            <a class="btn btn-flat waves-attach">Display/Hide  Explanations</a>
+                            <div style="display: inline;" class="dropdown-wrap">
+                                <div class="dropdown dropdown-inline">
+                                    <a class="btn btn-flat dropdown-toggle-btn waves-attach waves-effect" data-toggle="dropdown" aria-expanded="true">Sort<span class="icon margin-left-sm">keyboard_arrow_down</span></a>
+                                    <ul class="dropdown-menu nav">
+                                        <li>
+                                            <a class="waves-attach waves-effect" href="javascript:void(0)">From The Newst (Default)</a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-attach waves-effect" href="javascript:void(0)">From The Oldest</a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-attach waves-effect" href="javascript:void(0)">From A to Z</a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-attach waves-effect" href="javascript:void(0)">From Z to A</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-table">
                             <div class="table-responsive">
-                                <table class="table" title="A table within a card">
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Word</th>
+                                            <th>Word/Phrase</th>
                                             <th>Pronunciation</th>
                                             <th>Type</th>
                                             <th>Meaning</th>
@@ -65,4 +87,39 @@
         </div>
     </div>
 </body>
+<div aria-hidden="true" class="modal fade" id="new_word_modal" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-heading">
+                <a class="modal-close" data-dismiss="modal">×</a>
+                <h2 class="modal-title">New Word</h2>
+            </div>
+            <div class="modal-inner">
+                <div class="form-group form-group-label control-highlight">
+                    <label class="floating-label" for="new_word">Word/Phrase</label>
+                    <input class="form-control" id="new_word" type="text" value="">
+                </div>
+                <div class="form-group form-group-label control-highlight">
+                    <label class="floating-label" for="new_word_pronunciation">Pronunciation</label>
+                    <input class="form-control" id="new_word_pronunciation" type="text" value="">
+                </div>
+                <div class="form-group form-group-label control-highlight">
+                    <label class="floating-label" for="new_word_type">Type</label>
+                    <input class="form-control" id="new_word_type" type="text" value="">
+                </div>
+                <div class="form-group form-group-label control-highlight">
+                    <label class="floating-label" for="new_word_meaning">Meaning</label>
+                    <input class="form-control" id=_word"new_meaning" type="text" value="">
+                </div>
+                <div class="form-group form-group-label control-highlight">
+                    <label class="floating-label" for="new_word_example">Example</label>
+                    <input class="form-control" id="new_word_example" type="text" value="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Cancel</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Save</button></p>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

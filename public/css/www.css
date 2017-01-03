@@ -5,42 +5,49 @@
     font-weight: 100;
     height: 100vh;
     margin: 0;
-}*/
+    }*/
 
-.full-height {
-    height: 100vh;
-}
+    body {
+        background: url('/image/hero.jpg') no-repeat center center;
+        /* https://css-tricks.com/forums/topic/responsive-hero-image-with-text-overlay/ */
+        width: 100%;
+    }
 
-.flex-center {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
 
-.position-ref {
-    position: relative;
-}
+    .full-height {
+        height: 100vh;
+    }
 
-.top-right {
-    position: absolute;
-    right: 10px;
-    top: 18px;
-}
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
 
-.content {
-    text-align: center;
-}
+    .position-ref {
+        position: relative;
+    }
 
-.title {
-    font-size: 20px;
-}
+    .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
 
-.links > a {
-    color: #636b6f;
-    padding: 0 25px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-}
+    .content {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .links > a {
+        color: #636b6f;
+        padding: 0 25px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
