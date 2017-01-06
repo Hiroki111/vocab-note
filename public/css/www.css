@@ -8,7 +8,7 @@
     }*/
 
     body {
-        background: url('/image/hero.jpg') no-repeat center center;
+        background: url('/images/hero.jpg') no-repeat center center;
         /* https://css-tricks.com/forums/topic/responsive-hero-image-with-text-overlay/ */
         width: 100%;
     }

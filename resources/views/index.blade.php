@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="/css/base.min.css">
     <link rel="stylesheet" type="text/css" href="/css/project.min.css">
     <link rel="stylesheet" type="text/css" href="/css/www.css">
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/base.min.js"></script>
-    <script type="text/javascript" src="/js/project.min.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/lib/base.min.js"></script>
+    <script type="text/javascript" src="/js/lib/project.min.js"></script>
     <script type="text/javascript" src="/js/www.js"></script>
 </head>
 <body>
@@ -27,6 +27,7 @@
             <div class="title">
                 Hiroki's Vocab Note
             </div>
+            <div id="reactroot"></div>
             <div class="card">
                 <div class="card-main">
                     <div class="card-inner margin-bottom-no">
@@ -124,3 +125,4 @@
     </div>
 </div>
 </html>
+<script type="text/javascript" src="/js/build/reactapp.js"></script>
