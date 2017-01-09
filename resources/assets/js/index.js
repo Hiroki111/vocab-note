@@ -2,8 +2,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Table from './components/Table';
 
-ReactDOM.render(
-	<h1>Hello, world! First REACT!</h1>,
-	document.getElementById('reactroot')
-	);
+ReactDOM.render(<Table />, document.getElementById('reactroot'));

@@ -21670,13 +21670,245 @@ var _reactDom = __webpack_require__(79);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _Table = __webpack_require__(178);
+
+var _Table2 = _interopRequireDefault(_Table);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(
-	'h1',
-	null,
-	'Hello, world! First REACT!'
-), document.getElementById('reactroot'));
+_reactDom2.default.render(_react2.default.createElement(_Table2.default, null), document.getElementById('reactroot'));
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(80);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var divStyle = {
+  display: 'inline'
+};
+
+var ActionBar = function (_React$Component) {
+  _inherits(ActionBar, _React$Component);
+
+  function ActionBar() {
+    _classCallCheck(this, ActionBar);
+
+    return _possibleConstructorReturn(this, (ActionBar.__proto__ || Object.getPrototypeOf(ActionBar)).apply(this, arguments));
+  }
+
+  _createClass(ActionBar, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'action-bar', className: 'row' },
+        _react2.default.createElement(
+          'a',
+          { className: 'btn btn-flat waves-attach' },
+          'Display/Hide  Explanations'
+        ),
+        _react2.default.createElement(
+          'div',
+          { style: divStyle, className: 'dropdown-wrap' },
+          _react2.default.createElement(
+            'div',
+            { className: 'dropdown dropdown-inline' },
+            _react2.default.createElement(
+              'a',
+              { className: 'btn btn-flat dropdown-toggle-btn waves-attach waves-effect', 'data-toggle': 'dropdown', 'aria-expanded': 'true' },
+              'Sort',
+              _react2.default.createElement(
+                'span',
+                { className: 'icon margin-left-sm' },
+                'keyboard_arrow_down'
+              )
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: 'dropdown-menu nav' },
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { className: 'waves-attach waves-effect', href: 'javascript:void(0)' },
+                  'From The Newst (Default)'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { className: 'waves-attach waves-effect', href: 'javascript:void(0)' },
+                  'From The Oldest'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { className: 'waves-attach waves-effect', href: 'javascript:void(0)' },
+                  'From A to Z'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { className: 'waves-attach waves-effect', href: 'javascript:void(0)' },
+                  'From Z to A'
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ActionBar;
+}(_react2.default.Component);
+
+var WordRow = function (_React$Component2) {
+  _inherits(WordRow, _React$Component2);
+
+  function WordRow() {
+    _classCallCheck(this, WordRow);
+
+    return _possibleConstructorReturn(this, (WordRow.__proto__ || Object.getPrototypeOf(WordRow)).apply(this, arguments));
+  }
+
+  _createClass(WordRow, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'table-responsive' },
+        _react2.default.createElement(
+          'table',
+          { className: 'table' },
+          _react2.default.createElement(
+            'thead',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                'Word/Phrase'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Pronunciation'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Type'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Meaning'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Example'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'td',
+                null,
+                'pronunciation'
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'pr\u0259\u02CCn\u028Cns\u026A\u02C8e\u026A\u0283(\u0259)n'
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'noun - C/U'
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'the way in which a word is pronounced.'
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'I haven\'t learned proper pronunciation of French words.'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return WordRow;
+}(_react2.default.Component);
+
+var Table = function (_React$Component3) {
+  _inherits(Table, _React$Component3);
+
+  function Table() {
+    _classCallCheck(this, Table);
+
+    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).apply(this, arguments));
+  }
+
+  _createClass(Table, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'card-inner margin-bottom-no' },
+        _react2.default.createElement(ActionBar, null),
+        _react2.default.createElement(WordRow, null)
+      );
+    }
+  }]);
+
+  return Table;
+}(_react2.default.Component);
+
+exports.default = Table;
 
 /***/ }
 /******/ ]);
