@@ -2,6 +2,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Table from './components/Table';
+import Note from './components/Note';
 
-ReactDOM.render(<Table />, document.getElementById('reactroot'));
+ReactDOM.render(<Note />, document.getElementById('reactroot'));
