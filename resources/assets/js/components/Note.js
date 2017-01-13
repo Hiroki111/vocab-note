@@ -1,16 +1,21 @@
 import React from 'react'
 
-const divStyle = {
-    display: 'inline',
+const uncoverButton = {
+    position: 'relative',
 };
 
 
 class ActionBar extends React.Component {
-    render() {
-        return (
-            <div id="action-bar" className="row">
-        <a className="btn btn-flat waves-attach">Display/Hide  Explanations</a>
-        <div style={divStyle} className="dropdown-wrap">
+  render() {
+    return (
+      <div id="action-bar" className="row">
+        <div className="checkbox switch dropdown-wrap">
+          <label>
+            <input className="access-hide" type="checkbox">
+            </input>
+            <span style={uncoverButton} className="switch-toggle"></span>Uncover All
+          </label>
+          
           <div className="dropdown dropdown-inline">
             <a className="btn btn-flat dropdown-toggle-btn waves-attach waves-effect" data-toggle="dropdown" aria-expanded="true">Sort
               <span className="icon margin-left-sm">keyboard_arrow_down</span>
@@ -32,8 +37,8 @@ class ActionBar extends React.Component {
           </div>
         </div>
       </div>
-            );
-    }
+    );
+  }
 }
 
 class Table extends React.Component {
@@ -42,6 +47,7 @@ class Table extends React.Component {
         this.state = {
             words: {}
         }
+        this.flipRow = this.flipRow.bind(this);
     }
 
     fetchWords() {
@@ -58,15 +64,34 @@ class Table extends React.Component {
         this.fetchWords();
     }
 
+    flipRow(id){
+      console.log(id+" clicked");
+      var status  = $(".cover_"+id).is(":visible");
+
+      console.log(status);
+      $( ".cover_"+id ).toggle( !status );
+    }
+
+    /*
+    <input class="filter" type="radio" value="open">Eligible</input>
+
+    document.querySelectorAll(".filter").forEach(function(item) {
+      item.addEventListener("click", filterStudents);
+    });
+    function filterStudents() {
+      window.location = window.location.pathname + "?status="+this.value;
+    }
+    */
+
     render() {
       var rows = [];
       for (var i = 0; i < this.state.words.length; i++) {
-        rows.push(<tr key={this.state.words[i].id}>
-                  <td>{this.state.words[i].word}</td>
-                  <td>{this.state.words[i].pronunciation}</td>
-                  <td>{this.state.words[i].type}</td>
-                  <td>{this.state.words[i].meaning}</td>
-                  <td>{this.state.words[i].example}</td>
+        rows.push(<tr onClick={this.flipRow.bind(this, this.state.words[i].id)} key={this.state.words[i].id}>
+                    <td>{this.state.words[i].word}</td>
+                    <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].pronunciation}</td>
+                    <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].type}</td>
+                    <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].meaning}</td>
+                    <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].example}</td>
                   </tr>);
       }
 
@@ -95,8 +120,8 @@ export default class Note extends React.Component {
     render() {
         return (
             <div className="card-inner margin-bottom-no">
-          <ActionBar />
-          <Table />
+              <ActionBar />
+              <Table />
           </div>
             );
     }
