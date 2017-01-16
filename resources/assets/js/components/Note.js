@@ -6,14 +6,28 @@ const uncoverButton = {
 
 
 class ActionBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      coverSwitch: true
+    };
+    this.clickCoverSwitch = this.clickCoverSwitch.bind(this);
+  }
+
+  clickCoverSwitch(){
+    
+    
+    console.log("clicked!", this.state.coverSwitch);
+  }
+
   render() {
     return (
       <div id="action-bar" className="row">
         <div className="checkbox switch dropdown-wrap">
           <label>
-            <input className="access-hide" type="checkbox">
+            <input onClick={this.clickCoverSwitch} defaultChecked={this.state.coverSwitch} className="access-hide" type="checkbox" id="cover-switch">
             </input>
-            <span style={uncoverButton} className="switch-toggle"></span>Uncover All
+            <span style={uncoverButton} className="switch-toggle"></span>Cover All
           </label>
           
           <div className="dropdown dropdown-inline">
@@ -50,6 +64,10 @@ class Table extends React.Component {
         this.flipRow = this.flipRow.bind(this);
     }
 
+    componentDidMount() {
+        this.fetchWords();
+    }
+
     fetchWords() {
         fetch('/words').then((response) => {
             response.json().then((jsonResponse) => {
@@ -60,16 +78,12 @@ class Table extends React.Component {
         });
     }
 
-    componentDidMount() {
-        this.fetchWords();
-    }
-
     flipRow(id){
-      console.log(id+" clicked");
-      var status  = $(".cover_"+id).is(":visible");
-
-      console.log(status);
-      $( ".cover_"+id ).toggle( !status );
+      if($(".cover_"+id).hasClass("hide-word")){
+        $(".cover_"+id ).removeClass( "hide-word" );
+      }else{
+        $(".cover_"+id ).addClass( "hide-word" );
+      }
     }
 
     /*
@@ -100,11 +114,11 @@ class Table extends React.Component {
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Word/Phrase</th>
-                    <th>Pronunciation</th>
-                    <th>Type</th>
-                    <th>Meaning</th>
-                    <th>Example</th>
+                    <th className="word-table-header word">Word/Phrase</th>
+                    <th className="word-table-header pronunciation">Pronunciation</th>
+                    <th className="word-table-header type">Type</th>
+                    <th className="word-table-header meaning">Meaning</th>
+                    <th className="word-table-header example">Example</th>
                   </tr>
                 </thead>
                 <tbody>
