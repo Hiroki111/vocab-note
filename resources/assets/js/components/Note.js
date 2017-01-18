@@ -4,20 +4,29 @@ const uncoverButton = {
     position: 'relative',
 };
 
-
 class ActionBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coverSwitch: true
+      coverSwitch: false,
+      value: 1
     };
     this.clickCoverSwitch = this.clickCoverSwitch.bind(this);
+    this.sortRows = this.sortRows.bind(this);    
   }
 
   clickCoverSwitch(){
-    
-    
-    console.log("clicked!", this.state.coverSwitch);
+    if(this.state.coverSwitch){
+        $('[class^="cover_"]').removeClass( "hide-word" );
+      }else{
+        $('[class^="cover_"]').addClass( "hide-word" );
+    }
+    this.setState((prevState) => ({ coverSwitch: !prevState.coverSwitch}));    
+  }
+
+  sortRows(condition){
+    //this.setState({value: event.target.value});
+    console.log(condition);
   }
 
   render() {
@@ -27,7 +36,7 @@ class ActionBar extends React.Component {
           <label>
             <input onClick={this.clickCoverSwitch} defaultChecked={this.state.coverSwitch} className="access-hide" type="checkbox" id="cover-switch">
             </input>
-            <span style={uncoverButton} className="switch-toggle"></span>Cover All
+            <span style={uncoverButton} className="switch-toggle"></span>Cover All {this.state.coverSwitch}
           </label>
           
           <div className="dropdown dropdown-inline">
@@ -36,16 +45,16 @@ class ActionBar extends React.Component {
             </a>
             <ul className="dropdown-menu nav">
               <li>
-                <a className="waves-attach waves-effect" href="javascript:void(0)">From The Newst (Default)</a>
+                <a className="waves-attach waves-effect" value={1} onClick={this.sortRows.bind(this, "FTN")} href="javascript:void(0)">From The Newst (Default)</a>
               </li>
               <li>
-                <a className="waves-attach waves-effect" href="javascript:void(0)">From The Oldest</a>
+                <a className="waves-attach waves-effect" value={2} onClick={this.sortRows.bind(this, "FTO")} href="javascript:void(0)">From The Oldest</a>
               </li>
               <li>
-                <a className="waves-attach waves-effect" href="javascript:void(0)">From A to Z</a>
+                <a className="waves-attach waves-effect" value={3} onClick={this.sortRows.bind(this, "FATZ")} href="javascript:void(0)">From A to Z</a>
               </li>
               <li>
-                <a className="waves-attach waves-effect" href="javascript:void(0)">From Z to A</a>
+                <a className="waves-attach waves-effect" value={4} onClick={this.sortRows.bind(this, "FZTA")} href="javascript:void(0)">From Z to A</a>
               </li>
             </ul>
           </div>
@@ -65,7 +74,7 @@ class Table extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchWords();
+      this.fetchWords();
     }
 
     fetchWords() {
@@ -102,7 +111,7 @@ class Table extends React.Component {
       for (var i = 0; i < this.state.words.length; i++) {
         rows.push(<tr onClick={this.flipRow.bind(this, this.state.words[i].id)} key={this.state.words[i].id}>
                     <td>{this.state.words[i].word}</td>
-                    <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].pronunciation}</td>
+                    <td className={'cover_'+this.state.words[i].id, 'another-Class'} className="another-Class">{this.state.words[i].pronunciation}</td>
                     <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].type}</td>
                     <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].meaning}</td>
                     <td className={'cover_'+this.state.words[i].id}>{this.state.words[i].example}</td>
