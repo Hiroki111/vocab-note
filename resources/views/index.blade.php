@@ -41,39 +41,6 @@
     </div>
 </body>
 <div aria-hidden="true" class="modal fade" id="new_word_modal" role="dialog" tabindex="-1" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-heading">
-                <a class="modal-close" data-dismiss="modal">×</a>
-                <h2 class="modal-title">New Word</h2>
-            </div>
-            <div class="modal-inner">
-                <div class="form-group form-group-label control-highlight">
-                    <label class="floating-label" for="new_word">Word/Phrase</label>
-                    <input class="form-control" id="new_word" type="text" value="">
-                </div>
-                <div class="form-group form-group-label control-highlight">
-                    <label class="floating-label" for="new_word_pronunciation">Pronunciation</label>
-                    <input class="form-control" id="new_word_pronunciation" type="text" value="">
-                </div>
-                <div class="form-group form-group-label control-highlight">
-                    <label class="floating-label" for="new_word_type">Type</label>
-                    <input class="form-control" id="new_word_type" type="text" value="">
-                </div>
-                <div class="form-group form-group-label control-highlight">
-                    <label class="floating-label" for="new_word_meaning">Meaning</label>
-                    <input class="form-control" id=_word"new_meaning" type="text" value="">
-                </div>
-                <div class="form-group form-group-label control-highlight">
-                    <label class="floating-label" for="new_word_example">Example</label>
-                    <input class="form-control" id="new_word_example" type="text" value="">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Cancel</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Save</button></p>
-            </div>
-        </div>
-    </div>
 </div>
 </html>
 <script type="text/javascript" src="/js/build/reactapp.js"></script>
