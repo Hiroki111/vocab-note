@@ -13,6 +13,10 @@
         width: 100%;
     }
 
+    .uncover-button {
+        position: relative !important;
+    }
+
     .hide-word {
         color: #dadada;
         background-color: #dadada;
