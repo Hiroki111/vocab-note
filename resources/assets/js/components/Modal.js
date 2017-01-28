@@ -5,7 +5,27 @@ export default class Modal extends React.Component {
     super(props);
     this.state = {
       words: [],
-    }
+      word:"",
+      pronunciation:"",
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event){
+    console.log("event.target", event.target);
+    console.log("event.target.name", event.target.name);
+
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    console.log("target", target);
+    console.log("value", value);
+    console.log("name", name);
+
+    this.setState({
+      [name]: value
+    });
   }
 
   
@@ -20,11 +40,17 @@ export default class Modal extends React.Component {
             <div className="modal-inner">
                 <div className="form-group form-group-label control-highlight">
                     <label className="floating-label" htmlFor="new_word">Word/Phrase</label>
-                    <input className="form-control" id="new_word" type="text" value="" />
+                    <input className="form-control" id="new_word" type="text"
+                    name ="word"
+                    value={this.state.word}
+                    onChange={this.handleChange}/>
                 </div>
                 <div className="form-group form-group-label control-highlight">
                     <label className="floating-label" htmlFor="new_word_pronunciation">Pronunciation</label>
-                    <input className="form-control" id="new_word_pronunciation" type="text" value="" />
+                    <input className="form-control" id="new_word_pronunciation" type="text" 
+                    name="pronunciation"
+                    value={this.state.pronunciation}
+                    onChange={this.handleChange} />
                 </div>
                 <div className="form-group form-group-label control-highlight">
                     <label className="floating-label" htmlFor="new_word_type">Type</label>
