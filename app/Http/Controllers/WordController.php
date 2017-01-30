@@ -35,7 +35,7 @@ class WordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Word::save($request->all());
     }
 
     /**

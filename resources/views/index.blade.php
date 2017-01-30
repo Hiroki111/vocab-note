@@ -29,12 +29,6 @@
             </div>
             <div class="card">
                 <div id="reactroot" class="card-main">
-                    <div class="card-action">
-                        <div class="card-action-btn pull-right">
-                            <a class="btn btn-flat waves-attach waves-effect" href="javascript:void(0)"><span class="icon">chevron_left</span></a>
-                            <a class="btn btn-flat waves-attach waves-effect" href="javascript:void(0)"><span class="icon">chevron_right</span></a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
