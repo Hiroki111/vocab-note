@@ -11,12 +11,12 @@ export default class Modal extends React.Component {
   }
 
   submit(){
-    fetch('/words', {
+    fetch('/api/words', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       body: JSON.stringify({
         word: this.state.words.word,
@@ -24,8 +24,13 @@ export default class Modal extends React.Component {
         type:this.state.words.type,
         meaning:this.state.words.meaning,
         example:this.state.words.example,
-      })
-    })
+      }),
+    }).then((response)=>{
+      console.log(response);
+      response.json().then((jsonReponse) => {
+        console.log(jsonReponse);        
+      });
+    });
   }
 
   handleChange(event){
@@ -36,8 +41,6 @@ export default class Modal extends React.Component {
     this.setState((prevState) =>{
       prevState.words[name]=value;
     });
-
-    console.log(this.state.words);
   }
 
   render() {

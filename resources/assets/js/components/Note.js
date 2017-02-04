@@ -19,7 +19,7 @@ export default class Note extends React.Component {
   }
 
   fetchWords() {
-    fetch('/words').then((response) => {
+    fetch('/api/words').then((response) => {
       response.json().then((jsonResponse) => {
         this.setState({
           words: jsonResponse
