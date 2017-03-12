@@ -18,21 +18,26 @@ var config = {
         filename: 'reactapp.js'
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'API_URL': API_URL[environment]
-        })
+    new webpack.DefinePlugin({
+        'API_URL': API_URL[environment]
+    })
     ],
     module: {
         loaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: "babel-loader",
-            },
-            {
-                test: /\.html$/,
-                loader: "file?name=[name].[ext]"
+        {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: "babel-loader",
+            query: {
+                cacheDirectory: true,
+                plugins: ['transform-decorators-legacy' ],
+                presets: ['es2015', 'react',],
             }
+        },
+        {
+            test: /\.html$/,
+            loader: "file?name=[name].[ext]"
+        }
         ]
     }
 };

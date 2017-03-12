@@ -46,7 +46,6 @@ export default class Note extends React.Component {
         <ActionBar 
           onSorting={this.handleSorting}
           onCovering={this.handleCovering}
-          sortBy={this.state.sortBy} 
           coverAll={this.state.coverAll}
         />
         <Table 
