@@ -45,7 +45,7 @@ class WordForm extends React.Component {
         </div>
         <div className="modal-footer">
           <p className="text-right">
-            <button className="btn btn-flat btn-green btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" onClick={reset}>Clear</button>
+            <button className="btn btn-flat btn-green btn-brand waves-attach waves-effect" type="button" onClick={reset}>Clear</button>
             <button className="btn btn-flat btn-red btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" disabled={pristine || submitting}>Close</button>
             <button onClick={handleSubmit} className="btn btn-flat btn-brand waves-attach waves-effect" type="submit" disabled={submitting}>Save</button>
           </p>

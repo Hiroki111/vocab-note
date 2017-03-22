@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
 import ActionBar from './ActionBar';
 import Table from './Table';
+import * as wordAction from '../actions/wordActions';
 
+@connect((store) => {
+  return {
+    words:store.word.words,
+    sortBy: store.word.sortBy,
+    coverAll: store.word.coverAll,
+  }
+})
 export default class Note extends React.Component {
   constructor(props) {
     super(props);
@@ -11,21 +20,11 @@ export default class Note extends React.Component {
       coverAll: false,
     }
     this.handleSorting = this.handleSorting.bind(this);
-    this.handleCovering = this.handleCovering.bind(this);    
+    this.handleCovering = this.handleCovering.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchWords();
-  }
-
-  fetchWords() {
-    fetch('/api/words').then((response) => {
-      response.json().then((jsonResponse) => {
-        this.setState({
-          words: jsonResponse
-        });
-      })
-    });
+  componentWillMount() {
+    this.props.dispatch(wordAction.fetchWords());
   }
 
   handleCovering(checkedCoverAll){
@@ -43,13 +42,14 @@ export default class Note extends React.Component {
   render() {
     return (
       <div className="card-inner margin-bottom-no">
+      
         <ActionBar 
           onSorting={this.handleSorting}
           onCovering={this.handleCovering}
           coverAll={this.state.coverAll}
         />
         <Table 
-          words={this.state.words} 
+          words={this.props.words} 
           sortBy={this.state.sortBy} 
           coverAll={this.state.coverAll}
         />

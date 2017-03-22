@@ -1,7 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import WordForm from './WordForm';
 
-
+@connect((store) => {
+  return{
+    word:store.word.words
+  };
+})
 export default class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -11,8 +16,6 @@ export default class Modal extends React.Component {
   }
 
   handleSubmit(values){
-    console.log(values);
-
     fetch('/api/words', {
       method: 'POST',
       headers: {
@@ -27,13 +30,19 @@ export default class Modal extends React.Component {
         example:values.example,
       }),
     }).then((response)=>{
+      $('#new_word_modal').modal('hide');
       response.json().then((jsonReponse) => {
+        pushNewWord(jsonReponse);
         console.log("Result",jsonReponse);        
       });
     });
   }
 
-  render() {    
+  pushNewWord(word){
+    this.props.dispatch({type:ADD_WORD,data:word});
+  }
+
+  render() {
     return (
       <div className="modal-dialog">
         <div className="modal-content">
@@ -43,7 +52,7 @@ export default class Modal extends React.Component {
             </div>
             <WordForm onSubmit={this.handleSubmit} />
         </div>
-    </div>
+      </div>
       );
   }
 }
