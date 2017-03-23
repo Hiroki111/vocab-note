@@ -5,6 +5,20 @@ export function addWord(word){
 	};
 }
 
+export function sortWords(order){
+	return{
+		type:"SORT_WORDS",
+		data:order,
+	};
+}
+
+export function clickCoverSwitch(clicked){
+	return{
+		type:"COVER_WORDS",
+		data:clicked,
+	};
+}
+
 export function fetchWords(){
 	return function(dispatch){
 		fetch('/api/words')
@@ -17,7 +31,6 @@ export function fetchWords(){
 				throw new Error(response);
 			}
 		}).catch((error)=>{
-			console.log("error",error);
 			dispatch({type:"FETCH_WORDS_ERROR",data:error});
 		});
 	}

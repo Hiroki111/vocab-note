@@ -1,5 +1,12 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
+import * as wordAction from '../actions/wordActions';
 
+@connect((store) => {
+  return {
+    coverAll: store.word.coverAll,
+  }
+})
 export default class ActionBar extends React.Component {
   constructor(props) {
     super(props);
@@ -8,15 +15,11 @@ export default class ActionBar extends React.Component {
   }
 
   clickCoverSwitch(){
-    this.props.onCovering(
-      this.checkedCoverAll.checked,
-    );
+    this.props.dispatch(wordAction.clickCoverSwitch(this.checkedCoverAll.checked));
   }
 
-  sortRowsBy(sortBy) {
-    this.props.onSorting(
-      sortBy,
-    );
+  sortRowsBy(order) {
+    this.props.dispatch(wordAction.sortWords(order));
   }
 
   render() {

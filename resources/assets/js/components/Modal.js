@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import WordForm from './WordForm';
+import * as wordAction from '../actions/wordActions';
 
 @connect((store) => {
   return{
@@ -10,8 +11,6 @@ import WordForm from './WordForm';
 export default class Modal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -32,14 +31,9 @@ export default class Modal extends React.Component {
     }).then((response)=>{
       $('#new_word_modal').modal('hide');
       response.json().then((jsonReponse) => {
-        pushNewWord(jsonReponse);
-        console.log("Result",jsonReponse);        
+        this.props.dispatch(wordAction.addWord(jsonReponse));
       });
     });
-  }
-
-  pushNewWord(word){
-    this.props.dispatch({type:ADD_WORD,data:word});
   }
 
   render() {

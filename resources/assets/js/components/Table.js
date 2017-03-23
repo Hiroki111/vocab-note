@@ -15,11 +15,15 @@ export default class Table extends React.Component {
       });
     }else if(this.props.sortBy === "FATZ"){
       this.props.words.sort(function(a, b){
-        return a.word > b.word;
+        if(a.word.toLowerCase() < b.word.toLowerCase()) return -1;
+        if(a.word.toLowerCase() > b.word.toLowerCase()) return 1;
+        return 0;
       });
     }else if(this.props.sortBy === "FZTA"){
       this.props.words.sort(function(a, b){
-        return b.word > a.word;
+        if(a.word.toLowerCase() > b.word.toLowerCase()) return -1;
+        if(a.word.toLowerCase() < b.word.toLowerCase()) return 1;
+        return 0;
       });
     }else if(this.props.sortBy === "SHFL"){
       var last = this.props.words.length;

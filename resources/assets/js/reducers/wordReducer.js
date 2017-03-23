@@ -1,7 +1,7 @@
 export default function wordReducer(state={
 	words: [],
 	sortBy: "FTN",
-	coverAll: false,
+	coverAll: true,
 },action){
 	switch(action.type){
 		case "FETCH_WORDS":{
@@ -22,6 +22,20 @@ export default function wordReducer(state={
 			return {
 				...state,
 				words:[...state.words, action.data],
+			}
+			break;
+		}
+		case "SORT_WORDS":{
+			return {
+				...state,
+				sortBy:action.data,
+			}
+			break;
+		}
+		case "COVER_WORDS":{
+			return {
+				...state,
+				coverAll:action.data,
 			}
 			break;
 		}
