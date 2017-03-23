@@ -1,6 +1,6 @@
 export default function wordReducer(state={
 	words: [],
-	sortBy: "FTN",
+	sortBy: "FO",
 	coverAll: true,
 },action){
 	switch(action.type){

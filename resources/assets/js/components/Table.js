@@ -5,11 +5,11 @@ export default class Table extends React.Component {
   render() {
     var rows = [];
 
-    if(this.props.sortBy === "FTN"){
+    if(this.props.sortBy === "FN"){
       this.props.words.sort(function(a, b){
         return b.id - a.id;
       });
-    }else if(this.props.sortBy === "FTO"){
+    }else if(this.props.sortBy === "FO"){
       this.props.words.sort(function(a, b){
         return a.id - b.id;
       });

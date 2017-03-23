@@ -38,10 +38,10 @@ export default class ActionBar extends React.Component {
             </a>
             <ul className="dropdown-menu nav">
               <li>
-                <a className="waves-attach waves-effect" onClick={this.sortRowsBy.bind(this, "FTN")} href="javascript:void(0)">From The Newst</a>
+                <a className="waves-attach waves-effect" onClick={this.sortRowsBy.bind(this, "FN")} href="javascript:void(0)">From The Newst</a>
               </li>
               <li>
-                <a className="waves-attach waves-effect" onClick={this.sortRowsBy.bind(this, "FTO")} href="javascript:void(0)">From The Oldest (Default)</a>
+                <a className="waves-attach waves-effect" onClick={this.sortRowsBy.bind(this, "FO")} href="javascript:void(0)">From The Oldest (Default)</a>
               </li>
               <li>
                 <a className="waves-attach waves-effect" onClick={this.sortRowsBy.bind(this, "FATZ")} href="javascript:void(0)">From A to Z</a>
