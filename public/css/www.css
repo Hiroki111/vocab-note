@@ -42,6 +42,10 @@
         height: 100%;
     }
 
+    .edit-word{
+        width: 10px;
+    }
+
     .word-table-header{
          padding: 0;
     }

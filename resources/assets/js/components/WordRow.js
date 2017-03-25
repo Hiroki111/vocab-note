@@ -21,12 +21,15 @@ export default class WordRow extends React.Component {
     }
 
     return (
-      <tr onClick={this.flipRow.bind(this, this.props.word.id)}>
+      <tr>
         <td>{this.props.word.word}</td>
         <td className={classes}>{this.props.word.pronunciation}</td>
         <td className={classes}>{this.props.word.type}</td>
         <td className={classes}>{this.props.word.meaning}</td>
         <td className={classes}>{this.props.word.example}</td>
+        <td onClick={this.flipRow.bind(this, this.props.word.id)}>
+          <a className="btn btn-primary btn-xs">*</a>
+        </td>
       </tr>
       );
   }

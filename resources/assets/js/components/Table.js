@@ -50,6 +50,7 @@ export default class Table extends React.Component {
             <th className="word-table-header type">Type</th>
             <th className="word-table-header meaning">Meaning</th>
             <th className="word-table-header example">Example</th>
+            <th className="word-table-header edit-word"></th>
           </tr>
           </thead>
           <tbody>
