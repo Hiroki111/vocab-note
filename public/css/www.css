@@ -11,6 +11,13 @@
         background: url('/images/hero.jpg') no-repeat center center;
         /* https://css-tricks.com/forums/topic/responsive-hero-image-with-text-overlay/ */
         width: 100%;
+        padding-bottom: 0;
+        top: 0px;
+    }
+
+    .card{
+        height: 85%;
+        overflow: scroll;
     }
 
     .caution{
@@ -27,7 +34,12 @@
     }
 
     .content {
-        width: 1100px;
+        max-width: 1500px;
+        min-width: 500px;
+        position: fixed;
+        top: 60px;
+        text-align: center;
+        height: 100%;
     }
 
     .word-table-header{
@@ -72,10 +84,6 @@
         position: absolute;
         right: 10px;
         top: 18px;
-    }
-
-    .content {
-        text-align: center;
     }
 
     .title {
