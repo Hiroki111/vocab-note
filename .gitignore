@@ -4,4 +4,4 @@
 Homestead.json
 Homestead.yaml
 .env
-./public/js/build
+/public/js/build/reactapp.js

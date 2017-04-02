@@ -5,6 +5,13 @@ export function addWord(word){
 	};
 }
 
+export function setWord(word){
+	return{
+		type:"SET_WORD",
+		data:word,
+	};
+}
+
 export function sortWords(order){
 	return{
 		type:"SORT_WORDS",

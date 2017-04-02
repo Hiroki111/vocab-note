@@ -1,4 +1,11 @@
 export default function wordReducer(state={
+	word:{
+		word:"",
+		pronunciation:"",
+		type:"",
+		meaning:"",
+		example:"",
+	},
 	words: [],
 	sortBy: "FO",
 	coverAll: true,
@@ -8,6 +15,13 @@ export default function wordReducer(state={
 			return{
 				...state,
 				words:action.data,
+			}
+			break;
+		}
+		case "SET_WORD":{
+			return{
+				...state,
+				word:action.data,
 			}
 			break;
 		}

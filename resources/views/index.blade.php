@@ -15,26 +15,7 @@
     <script type="text/javascript" src="/js/www.js"></script>
 </head>
 <body>
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            <!-- <a href="{{ url('/login') }}">Login</a> -->
-            <!-- <a href="{{ url('/register') }}">Register</a> -->
-            <a class="" data-toggle="modal" href="#new_word_modal">Register new word</a>
-        </div>
-        @endif
-        <div class="content">
-            <div class="title">
-                Hiroki's Vocab Note
-            </div>
-            <div class="card">
-                <div id="reactroot" class="card-main">
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="reactroot"></div>
 </body>
-<div aria-hidden="true" class="modal fade" id="new_word_modal" role="dialog" tabindex="-1" style="display: none;">
-</div>
 </html>
 <script type="text/javascript" src="/js/build/reactapp.js"></script>

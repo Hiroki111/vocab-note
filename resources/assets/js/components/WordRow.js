@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import WordModal from './WordModal';
+import {connect} from 'react-redux';
+import * as wordAction from '../actions/wordActions';
 
-export default class WordRow extends React.Component {
+class WordRow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showModal:false
+    };
     this.flipRow = this.flipRow.bind(this);
+    this.handleHideModal = this.handleHideModal.bind(this);
+    this.handleShowModal = this.handleShowModal.bind(this);
   }
 
   flipRow(id){
@@ -13,6 +21,14 @@ export default class WordRow extends React.Component {
       $(".cover_"+id ).addClass( "hide-word" );
     }
   }
+  
+  handleHideModal(){
+    this.setState({showModal: false});
+  }
+  handleShowModal(){
+    this.props.dispatch(wordAction.setWord(this.props.word));
+    this.setState({showModal: true});
+  }
 
   render() {
     var classes = 'cover_'+this.props.word.id;
@@ -21,16 +37,22 @@ export default class WordRow extends React.Component {
     }
 
     return (
-      <tr>
-        <td>{this.props.word.word}</td>
+      <tr >
+        <td onClick={this.flipRow.bind(this, this.props.word.id)}>{this.props.word.word}</td>
         <td className={classes}>{this.props.word.pronunciation}</td>
         <td className={classes}>{this.props.word.type}</td>
         <td className={classes}>{this.props.word.meaning}</td>
         <td className={classes}>{this.props.word.example}</td>
-        <td onClick={this.flipRow.bind(this, this.props.word.id)}>
-          <a className="btn btn-primary btn-xs">*</a>
+        <td>
+          <button className="btn btn-primary btn-xs"
+            onClick={this.handleShowModal}>*</button>
+            {this.state.showModal ? <WordModal
+             handleHideModal={this.handleHideModal}
+             title={"Edit Word"} /> : null}
         </td>
       </tr>
       );
   }
 }
+
+export default connect()(WordRow);

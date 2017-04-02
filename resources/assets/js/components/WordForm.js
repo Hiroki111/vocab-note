@@ -1,13 +1,12 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import {connect} from 'react-redux'
+import * as wordAction from '../actions/wordActions'
 
 const validate = values => {
   const errors = {}
   if (!values.word) {
     errors.word = 'Required'
-  }
-  if (!values.pronunciation) {
-    errors.pronunciation = 'Required'
   }
   if (!values.meaning) {
     errors.meaning = 'Required'
@@ -32,16 +31,20 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 )
 
 class WordForm extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const {handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <div className="modal-inner">
-          <Field name="word" type="text" component={renderField} label="Word/Phrase"/>
-          <Field name="pronunciation" type="text" component={renderField} label="Pronunciation"/>
-          <Field name="type" type="text" component={renderField} label="Type"/>
-          <Field name="meaning" type="text" component={renderField} label="Meaning"/>
-          <Field name="example" type="text" component={renderField} label="Example"/>
+          <Field name="word" type="text" component={renderField} label="Word/Phrase" />
+          <Field name="pronunciation" type="text" component={renderField} label="Pronunciation" />
+          <Field name="type" type="text" component={renderField} label="Type" />
+          <Field name="meaning" type="text" component={renderField} label="Meaning" />
+          <Field name="example" type="text" component={renderField} label="Example" />
         </div>
         <div className="modal-footer">
           <p className="text-right">
@@ -57,8 +60,16 @@ class WordForm extends React.Component {
 
 WordForm = reduxForm({
   form: 'WordForm',
+  enableReinitialize: true,
   validate
 })(WordForm);
+
+WordForm = connect(
+  state => ({
+    initialValues: state.word.word, 
+    enableReinitialize: true,
+  }),
+)(WordForm);
 
 export default WordForm;
 
