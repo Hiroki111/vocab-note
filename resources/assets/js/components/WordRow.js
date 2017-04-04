@@ -1,7 +1,8 @@
 import React from 'react';
-import WordModal from './WordModal';
+import { Modal } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import * as wordAction from '../actions/wordActions';
+import WordForm from './WordForm';
 
 class WordRow extends React.Component {
   constructor(props) {
@@ -21,13 +22,33 @@ class WordRow extends React.Component {
       $(".cover_"+id ).addClass( "hide-word" );
     }
   }
-  
-  handleHideModal(){
-    this.setState({showModal: false});
-  }
   handleShowModal(){
     this.props.dispatch(wordAction.setWord(this.props.word));
     this.setState({showModal: true});
+  }
+  handleHideModal(){
+    this.setState({showModal: false});
+  }
+  handleSubmit(values){
+    fetch('/api/words/'+this.props.word.id, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        word: values.word,
+        pronunciation: values.pronunciation,
+        type:values.type,
+        meaning:values.meaning,
+        example:values.example,
+      }),
+    }).then((response)=>{
+      response.json().then((jsonReponse) => {
+        this.props.dispatch(wordAction.addWord(jsonReponse));
+      });
+      this.handleHideModal();
+    });
   }
 
   render() {
@@ -46,9 +67,14 @@ class WordRow extends React.Component {
         <td>
           <button className="btn btn-primary btn-xs"
             onClick={this.handleShowModal}>*</button>
-            {this.state.showModal ? <WordModal
-             handleHideModal={this.handleHideModal}
-             title={"Edit Word"} /> : null}
+          <Modal show={this.state.showModal} onHide={this.handleHideModal}>
+            <Modal.Header>
+              <Modal.Title>Edit Word</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <WordForm onSubmit={this.handleSubmit} />
+            </Modal.Body>
+          </Modal>
         </td>
       </tr>
       );
