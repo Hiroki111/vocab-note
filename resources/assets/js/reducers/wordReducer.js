@@ -1,58 +1,78 @@
-export default function wordReducer(state={
-	word:{
-		word:"",
-		pronunciation:"",
-		type:"",
-		meaning:"",
-		example:"",
+export default function wordReducer(state = {
+	word: {
+		word: "",
+		pronunciation: "",
+		type: "",
+		meaning: "",
+		example: "",
 	},
 	words: [],
 	sortBy: "FO",
 	coverAll: true,
-},action){
-	switch(action.type){
-		case "FETCH_WORDS":{
-			return{
-				...state,
-				words:action.data,
+}, action) {
+	switch (action.type) {
+		case "FETCH_WORDS":
+			{
+				return {
+					...state,
+					words: action.data,
+				}
+				break;
 			}
-			break;
-		}
-		case "SET_WORD":{
-			return{
-				...state,
-				word:action.data,
+		case "SET_WORD":
+			{
+				return {
+					...state,
+					word: action.data,
+				}
+				break;
 			}
-			break;
-		}
-		case "FETCH_WORDS_ERROR":{
-			return{
-				...state,
-				words:[],
+		case "FETCH_WORDS_ERROR":
+			{
+				return {
+					...state,
+					words: [],
+				}
+				break;
 			}
-			break;
-		}
-		case "ADD_WORD":{
-			return {
-				...state,
-				words:[...state.words, action.data],
+		case "ADD_WORD":
+			{
+				return {
+					...state,
+					words: [...state.words, action.data],
+				}
+				break;
 			}
-			break;
-		}
-		case "SORT_WORDS":{
-			return {
-				...state,
-				sortBy:action.data,
+		case "UPDATE_WORD":
+			{
+				return {
+					...state,
+					words: state.words.map(function(word) {
+						if (word.id === action.data.id) {
+							return action.data;
+						}
+						else {
+							return word;
+						}
+					}),
+				}
 			}
-			break;
-		}
-		case "COVER_WORDS":{
-			return {
-				...state,
-				coverAll:action.data,
+		case "SORT_WORDS":
+			{
+				return {
+					...state,
+					sortBy: action.data,
+				}
+				break;
 			}
-			break;
-		}
+		case "COVER_WORDS":
+			{
+				return {
+					...state,
+					coverAll: action.data,
+				}
+				break;
+			}
 	}
 	return state;
 }

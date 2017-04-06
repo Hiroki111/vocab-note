@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 
 class WordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    private $word;
+
+    public function __construct(Request $request, Word $word)
+    {
+        $this->request = $request;
+        $this->word    = $word;
+    }
+
     public function index()
     {
-        return Word::all();
+        return $this->word->all();
     }
 
     /**
@@ -35,7 +39,7 @@ class WordController extends Controller
      */
     public function store(Request $request)
     {
-        $word = new Word($request->all());
+        $word = $this->word->create($request->all());
         $word->save();
         return $word;
     }
@@ -71,7 +75,9 @@ class WordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $word = $this->word->find($id);
+        $word->update($request->all());
+        return $word;
     }
 
     /**

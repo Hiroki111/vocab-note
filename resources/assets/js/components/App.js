@@ -16,9 +16,6 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleHideModal(){
-    this.setState({showModal: false});
-  }
   handleShowModal(){
     this.props.dispatch(wordAction.setWord({
       word:"",
@@ -29,7 +26,11 @@ class App extends React.Component {
     }));
     this.setState({showModal: true});
   }
+  handleHideModal(){
+    this.setState({showModal: false});
+  }
   handleSubmit(values){
+    console.log("this - App",this);
    fetch('/api/words/', {
      method: 'POST',
      headers: {
@@ -61,7 +62,7 @@ class App extends React.Component {
               <Modal.Title>New Word</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <WordForm onSubmit={this.handleSubmit} />
+              <WordForm onSubmit={this.handleSubmit} onHide={this.handleHideModal}/>
             </Modal.Body>
           </Modal>
         </div>
