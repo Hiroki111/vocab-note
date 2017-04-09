@@ -1,6 +1,13 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import {connect} from 'react-redux'
+import {
+  Field,
+  reduxForm
+}
+from 'redux-form'
+import {
+  connect
+}
+from 'react-redux'
 import * as wordAction from '../actions/wordActions'
 
 const validate = values => {
@@ -20,7 +27,15 @@ const validate = values => {
   return errors
 }
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: {
+    touched,
+    error
+  }
+}) => (
   <div className="form-group form-group-label control-highlight">
     <label className="floating-label" htmlFor={"new_"+type}>{label}</label>
     <div>
@@ -36,7 +51,12 @@ class WordForm extends React.Component {
   }
 
   render() {
-    const {handleSubmit, pristine, reset, submitting } = this.props;
+    const {
+      handleSubmit,
+      pristine,
+      reset,
+      submitting
+    } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <div className="modal-inner">
@@ -48,7 +68,7 @@ class WordForm extends React.Component {
         </div>
         <div className="modal-footer">
           <p className="text-right">
-            <button onClick={reset} className="btn btn-flat btn-green btn-brand waves-attach waves-effect" type="button">Clear</button>
+            <button onClick={reset} className="btn btn-flat btn-green btn-brand waves-attach waves-effect" type="button">Reset</button>
             <button onClick={this.props.onHide} className="btn btn-flat btn-red btn-brand waves-attach waves-effect" type="button">Close</button>
             <button onClick={handleSubmit} className="btn btn-flat btn-brand waves-attach waves-effect" type="submit" disabled={submitting}>Save</button>
           </p>
@@ -66,7 +86,7 @@ WordForm = reduxForm({
 
 WordForm = connect(
   state => ({
-    initialValues: state.word.word, 
+    initialValues: state.word.word,
     enableReinitialize: true,
   }),
 )(WordForm);

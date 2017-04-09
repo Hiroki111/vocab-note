@@ -88,6 +88,8 @@ class WordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $word = $this->word->find($id);
+        $word->delete();
+        return $id;
     }
 }

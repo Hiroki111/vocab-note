@@ -20,6 +20,7 @@ class WordRow extends React.Component {
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   flipRow(id) {
@@ -42,7 +43,7 @@ class WordRow extends React.Component {
     });
   }
   handleSubmit(values) {
-    fetch('/api/words/' + values.id, {
+    fetch('/api/words/' + this.props.word.id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -62,6 +63,18 @@ class WordRow extends React.Component {
       this.handleHideModal();
     });
   }
+  handleDelete() {
+    fetch('/api/words/' + this.props.word.id, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      console.log(response);
+      this.handleHideModal();
+    });
+  }
 
   render() {
     var classes = 'cover_' + this.props.word.id;
@@ -71,7 +84,7 @@ class WordRow extends React.Component {
 
     return (
       <tr>
-         <td onClick={this.flipRow.bind(this, this.props.word.id)}>{this.props.word.word}</td>
+        <td onClick={this.flipRow.bind(this, this.props.word.id)}>{this.props.word.word}</td>
         <td className={classes}>{this.props.word.pronunciation}</td>
         <td className={classes}>{this.props.word.type}</td>
         <td className={classes}>{this.props.word.meaning}</td>
@@ -85,6 +98,11 @@ class WordRow extends React.Component {
             <Modal.Body>
               <WordForm onSubmit={this.handleSubmit} onHide={this.handleHideModal}/>
             </Modal.Body>
+            <Modal.Footer>
+                <p className="text-right">
+                  <button onClick={this.handleDelete} className="text-right btn btn-brand-accent waves-attach waves-light" type="button">DELETE</button>
+                </p>
+            </Modal.Footer>
           </Modal>
         </td>
       </tr>
