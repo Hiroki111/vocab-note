@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from './Note';
 import NewWordModal from './NewWordModal';
+import LoginModal from './LoginModal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="flex-center position-ref full-height">        
-          <NewWordModal />
+        <NewWordModal />
+        <LoginModal />
         <div className="content">
           <div className="title">Hiroki's Vocab Note</div>
           <div className="card">

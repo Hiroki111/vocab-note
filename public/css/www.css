@@ -103,3 +103,9 @@
         text-decoration: none;
         text-transform: uppercase;
     }
+
+    #register {
+        position: absolute;
+        right: 10px;
+        top: 50px;
+    }
