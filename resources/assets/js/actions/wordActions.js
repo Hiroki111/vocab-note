@@ -19,6 +19,13 @@ export function setWord(word) {
 	};
 }
 
+export function deleteWord(id) {
+	return {
+		type: "DELETE_WORD",
+		data: id,
+	};
+}
+
 export function sortWords(order) {
 	return {
 		type: "SORT_WORDS",

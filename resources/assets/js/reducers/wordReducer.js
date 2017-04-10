@@ -57,6 +57,15 @@ export default function wordReducer(state = {
 					}),
 				}
 			}
+		case "DELETE_WORD":
+			{
+				return {
+					...state,
+					words: state.words.filter(function(word) {
+						return word.id != action.data;
+					}),
+				}
+			}
 		case "SORT_WORDS":
 			{
 				return {

@@ -71,8 +71,8 @@ class WordRow extends React.Component {
         'Content-Type': 'application/json',
       },
     }).then((response) => {
-      console.log(response);
       this.handleHideModal();
+      this.props.dispatch(wordAction.deleteWord(this.props.word.id));
     });
   }
 
