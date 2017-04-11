@@ -62,7 +62,7 @@ class NewWordModal extends React.Component {
 
 	render() {
 		return (
-			<div className="top-right links">
+			<div className={this.props.classes}>
 				<a href="#" onClick={this.handleShowModal}>Register New Word</a>
 				<Modal show={this.state.showModal} onHide={this.handleHideModal}>
 					<Modal.Header>

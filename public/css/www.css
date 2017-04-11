@@ -104,7 +104,7 @@
         text-transform: uppercase;
     }
 
-    #register {
+    .register {
         position: absolute;
         right: 10px;
         top: 50px;

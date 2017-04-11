@@ -37,7 +37,7 @@ class LoginModal extends React.Component {
 
 	render() {
 		return (
-			<div id="register" className="links">
+			<div className={this.props.classes}>
 				<a href="#" onClick={this.handleShowModal}>Log in</a>
 				<Modal show={this.state.showModal} onHide={this.handleHideModal}>
 					<Modal.Header>
