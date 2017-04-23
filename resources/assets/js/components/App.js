@@ -2,6 +2,10 @@ import React from 'react';
 import Note from './Note';
 import NewWordModal from './NewWordModal';
 import LoginModal from './LoginModal';
+import {
+  Button
+}
+from 'react-bootstrap';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -9,6 +13,7 @@ export default class App extends React.Component {
     this.state = {
       newWordModalClasses: "top-right links",
       loginModalClasses: "register links",
+      smShow: false,
     };
   }
 

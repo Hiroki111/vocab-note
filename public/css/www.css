@@ -109,3 +109,7 @@
         right: 10px;
         top: 50px;
     }
+
+    .modal-sm{
+        width: 450px;
+    }

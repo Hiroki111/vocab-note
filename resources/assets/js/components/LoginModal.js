@@ -7,8 +7,10 @@ import {
 	connect
 }
 from 'react-redux';
-import * as wordAction from '../actions/wordActions';
-import WordForm from './WordForm';
+import {
+	Button
+}
+from 'react-bootstrap';
 
 class LoginModal extends React.Component {
 	constructor(props) {
@@ -18,7 +20,6 @@ class LoginModal extends React.Component {
 		};
 		this.handleHideModal = this.handleHideModal.bind(this);
 		this.handleShowModal = this.handleShowModal.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleShowModal() {
@@ -31,21 +32,35 @@ class LoginModal extends React.Component {
 			showModal: false
 		});
 	}
-	handleSubmit(values) {
-
-	}
 
 	render() {
 		return (
 			<div className={this.props.classes}>
 				<a href="#" onClick={this.handleShowModal}>Log in</a>
-				<Modal show={this.state.showModal} onHide={this.handleHideModal}>
+				<Modal show={this.state.showModal} onHide={this.handleHideModal} bsSize="small" aria-labelledby="contained-modal-title-sm">
 					<Modal.Header>
 						<Modal.Title>Log in</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<WordForm onSubmit={this.handleSubmit} onHide={this.handleHideModal}/>
+						<div>
+							<label>E-Mail Address</label>
+							<div><input id="email" type="email" /></div>
+                    	</div>
+                    	<div>
+                    		<label>Password</label>
+                    		<div><input id="password" type="password" /></div>
+                    	</div>
+                    	<div>
+                    		<label><input type="checkbox" name="remember"/> Remember me</label>
+                    	</div>
+                    	<div>
+                    		<button type="submit">Login</button>
+                        	<a href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                    	</div>
 					</Modal.Body>
+					<Modal.Footer>
+						<Button onClick={this.handleHideModal}>Close</Button>
+					</Modal.Footer>
 				</Modal>
 			</div>
 		);
