@@ -11,17 +11,19 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newWordModalClasses: "top-right links",
-      loginModalClasses: "register links",
       smShow: false,
     };
   }
 
   render() {
     return (
-      <div className="flex-center position-ref full-height">        
-        <NewWordModal classes={this.state.newWordModalClasses}/>
-        <LoginModal classes={this.state.loginModalClasses}/>
+      <div className="flex-center position-ref full-height">
+        <div className="top-right">
+          <NewWordModal/>
+        </div>
+        <div className="register">
+          <LoginModal/>
+        </div>
         <div className="content">
           <div className="title">Hiroki's Vocab Note</div>
           <div className="card">
