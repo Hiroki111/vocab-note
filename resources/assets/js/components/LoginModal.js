@@ -40,7 +40,7 @@ class LoginModal extends React.Component {
 	}
 	handleSubmit(values) {
 		console.log(values);
-		fetch('/oauth/token', {
+		fetch('/tokenAuth', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

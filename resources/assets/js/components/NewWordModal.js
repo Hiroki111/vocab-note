@@ -44,6 +44,7 @@ class NewWordModal extends React.Component {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
+				//Authorization: Bearer {yourtokenhere}
 			},
 			body: JSON.stringify({
 				word: values.word,
