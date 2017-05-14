@@ -20,4 +20,9 @@ class AuthenticateController extends Controller
         }
         return response()->json(compact('token'));
     }
+
+    protected function guard()
+    {
+        return response()->json(compact('user'));
+    }
 }

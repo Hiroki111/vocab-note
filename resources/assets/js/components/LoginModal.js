@@ -40,7 +40,7 @@ class LoginModal extends React.Component {
 	}
 	handleSubmit(values) {
 		console.log(values);
-		fetch('/tokenAuth', {
+		fetch('/api/tokenAuth', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -56,7 +56,7 @@ class LoginModal extends React.Component {
 			});
 			this.handleHideModal();
 		}).catch((error) => {
-			console.log(error);
+			console.log("error!", error);
 			// throw new SubmissionError({
 			// 	_error: 'Login failed!'
 			// });

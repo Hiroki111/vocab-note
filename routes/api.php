@@ -18,3 +18,12 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::resource('words', 'WordController');
+
+Route::post('/tokenAuth', 'AuthenticateController@tokenAuth');
+Route::get('/guardName', 'AuthenticateController@guard');
+Route::group([
+    'prefix'     => 'restricted',
+    'middleware' => 'auth:api',
+], function () {
+    Route::get('logout', 'AuthenticateController@logout');
+});

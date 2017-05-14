@@ -14,5 +14,4 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::post('/tokenAuth', 'AuthenticateController@tokenAuth');
 Auth::routes();

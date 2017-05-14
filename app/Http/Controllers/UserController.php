@@ -9,12 +9,10 @@ class UserController extends Controller
 {
     public function auth(Request $request)
     {
-        return ";jijij";
         $params   = $request->only('email', 'password');
         $email    = $params['email'];
         $password = $params['password'];
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            return "kkk";
             return Auth::user()->createToken('my_user', []);
         }
 
