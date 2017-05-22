@@ -16,6 +16,7 @@ import {
 	SubmissionError
 }
 from 'redux-form';
+import * as loginAction from '../actions/loginActions';
 
 class LoginModal extends React.Component {
 	constructor(props) {
@@ -39,7 +40,6 @@ class LoginModal extends React.Component {
 		});
 	}
 	handleSubmit(values) {
-		console.log(values);
 		fetch('/api/tokenAuth', {
 			method: 'POST',
 			headers: {
@@ -52,14 +52,10 @@ class LoginModal extends React.Component {
 			}),
 		}).then((response) => {
 			response.json().then((jsonReponse) => {
-				console.log(jsonReponse);
+				this.props.dispatch(loginAction.setToken(jsonReponse.token));
 			});
-			this.handleHideModal();
 		}).catch((error) => {
-			console.log("error!", error);
-			// throw new SubmissionError({
-			// 	_error: 'Login failed!'
-			// });
+			this.handleHideModal();
 		});
 	}
 

@@ -17,13 +17,14 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::resource('words', 'WordController');
-
 Route::post('/tokenAuth', 'AuthenticateController@tokenAuth');
-Route::get('/guardName', 'AuthenticateController@guard');
+
+Route::get('/words', 'WordController@index');
 Route::group([
     'prefix'     => 'restricted',
-    'middleware' => 'auth:api',
+    'middleware' => 'jwt.auth',
 ], function () {
-    Route::get('logout', 'AuthenticateController@logout');
+    Route::post('/words', 'WordController@store');
+    Route::put('/words/{id}', 'WordController@update');
+    Route::delete('/words/{id}', 'WordController@destroy');
 });

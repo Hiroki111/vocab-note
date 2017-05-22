@@ -10,6 +10,11 @@ from 'react-redux';
 import * as wordAction from '../actions/wordActions';
 import WordForm from './WordForm';
 
+@connect((store) => {
+  return {
+    token: store.login.token,
+  }
+})
 class WordRow extends React.Component {
   constructor(props) {
     super(props);
@@ -43,11 +48,12 @@ class WordRow extends React.Component {
     });
   }
   handleSubmit(values) {
-    fetch('/api/words/' + this.props.word.id, {
+    fetch('/api/restricted/words/' + this.props.word.id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer {' + this.props.token + '}',
       },
       body: JSON.stringify({
         word: values.word,
@@ -64,11 +70,12 @@ class WordRow extends React.Component {
     });
   }
   handleDelete() {
-    fetch('/api/words/' + this.props.word.id, {
+    fetch('/api/restricted/words/' + this.props.word.id, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer {' + this.props.token + '}',
       },
     }).then((response) => {
       this.handleHideModal();

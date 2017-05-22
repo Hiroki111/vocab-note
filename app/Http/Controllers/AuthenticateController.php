@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -24,5 +25,10 @@ class AuthenticateController extends Controller
     protected function guard()
     {
         return response()->json(compact('user'));
+    }
+
+    public function logout()
+    {
+        Auth::guard($this->getGuard())->logout();
     }
 }

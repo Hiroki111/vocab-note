@@ -10,6 +10,11 @@ from 'react-redux';
 import * as wordAction from '../actions/wordActions';
 import WordForm from './WordForm';
 
+@connect((store) => {
+	return {
+		token: store.login.token,
+	}
+})
 class NewWordModal extends React.Component {
 	constructor(props) {
 		super(props);
@@ -39,12 +44,12 @@ class NewWordModal extends React.Component {
 		});
 	}
 	handleSubmit(values) {
-		fetch('/api/words/', {
+		fetch('/api/restricted/words/', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
-				//Authorization: Bearer {yourtokenhere}
+				'Authorization': 'Bearer {' + this.props.token + '}',
 			},
 			body: JSON.stringify({
 				word: values.word,

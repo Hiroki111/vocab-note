@@ -2,6 +2,7 @@ import React from 'react';
 import Note from './Note';
 import NewWordModal from './NewWordModal';
 import LoginModal from './LoginModal';
+import TopBar from './TopBar';
 import {
   Button
 }
@@ -18,12 +19,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="flex-center position-ref full-height">
-        <div className="top-right">
-          <NewWordModal/>
-        </div>
-        <div className="register">
-          <LoginModal/>
-        </div>
+        <TopBar />
         <div className="content">
           <div className="title">Hiroki's Vocab Note</div>
           <div className="card">
