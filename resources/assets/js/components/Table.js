@@ -5,27 +5,31 @@ export default class Table extends React.Component {
   render() {
     var rows = [];
 
-    if(this.props.sortBy === "FN"){
-      this.props.words.sort(function(a, b){
-        return b.id - a.id;
-      });
-    }else if(this.props.sortBy === "FO"){
-      this.props.words.sort(function(a, b){
-        return a.id - b.id;
-      });
-    }else if(this.props.sortBy === "FATZ"){
-      this.props.words.sort(function(a, b){
-        if(a.word.toLowerCase() < b.word.toLowerCase()) return -1;
-        if(a.word.toLowerCase() > b.word.toLowerCase()) return 1;
+    if (this.props.sortBy === "FN") {
+      this.props.words.sort((a, b) =>
+        b.id - a.id
+      );
+    }
+    else if (this.props.sortBy === "FO") {
+      this.props.words.sort((a, b) =>
+        a.id - b.id
+      );
+    }
+    else if (this.props.sortBy === "FATZ") {
+      this.props.words.sort((a, b) => {
+        if (a.word.toLowerCase() < b.word.toLowerCase()) return -1;
+        if (a.word.toLowerCase() > b.word.toLowerCase()) return 1;
         return 0;
       });
-    }else if(this.props.sortBy === "FZTA"){
-      this.props.words.sort(function(a, b){
-        if(a.word.toLowerCase() > b.word.toLowerCase()) return -1;
-        if(a.word.toLowerCase() < b.word.toLowerCase()) return 1;
+    }
+    else if (this.props.sortBy === "FZTA") {
+      this.props.words.sort((a, b) => {
+        if (a.word.toLowerCase() > b.word.toLowerCase()) return -1;
+        if (a.word.toLowerCase() < b.word.toLowerCase()) return 1;
         return 0;
       });
-    }else if(this.props.sortBy === "SHFL"){
+    }
+    else if (this.props.sortBy === "SHFL") {
       var last = this.props.words.length;
       var temp, i;
       while (last) {
@@ -36,7 +40,7 @@ export default class Table extends React.Component {
       }
     }
 
-    this.props.words.forEach((word) =>{
+    this.props.words.forEach((word) => {
       rows.push(<WordRow key={word.id} word={word} coverAll={this.props.coverAll} />);
     });
 
@@ -58,6 +62,6 @@ export default class Table extends React.Component {
           </tbody>
         </table>
       </div>
-      );
+    );
   }
 }

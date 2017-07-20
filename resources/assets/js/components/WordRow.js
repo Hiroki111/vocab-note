@@ -9,6 +9,11 @@ import {
 from 'react-redux';
 import * as wordAction from '../actions/wordActions';
 import WordForm from './WordForm';
+import axios from 'axios';
+import {
+  SubmissionError
+}
+from 'redux-form';
 
 @connect((store) => {
   return {
@@ -25,7 +30,6 @@ class WordRow extends React.Component {
     this.handleHideModal = this.handleHideModal.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
   flipRow(id) {
@@ -48,39 +52,43 @@ class WordRow extends React.Component {
     });
   }
   handleSubmit(values) {
-    fetch('/api/restricted/words/' + this.props.word.id, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer {' + this.props.token + '}',
-      },
-      body: JSON.stringify({
+    if (values.type === "update") {
+      return axios.put('/api/restricted/words/' + this.props.word.id, {
         word: values.word,
         pronunciation: values.pronunciation,
         type: values.type,
         meaning: values.meaning,
         example: values.example,
-      }),
-    }).then((response) => {
-      response.json().then((jsonReponse) => {
-        this.props.dispatch(wordAction.updateWord(jsonReponse));
+      }, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer {' + this.props.token + '}',
+        }
+      }).then((response) => {
+        this.props.dispatch(wordAction.updateWord(response.data));
+        this.handleHideModal();
+      }).catch((error) => {
+        throw new SubmissionError({
+          _error: "Submission Error - Please make sure that you're logged in"
+        });
       });
-      this.handleHideModal();
-    });
-  }
-  handleDelete() {
-    fetch('/api/restricted/words/' + this.props.word.id, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer {' + this.props.token + '}',
-      },
-    }).then((response) => {
-      this.handleHideModal();
-      this.props.dispatch(wordAction.deleteWord(this.props.word.id));
-    });
+    }
+    else if (values.type === "delete") {
+      return axios.delete('/api/restricted/words/' + this.props.word.id, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer {' + this.props.token + '}',
+        }
+      }).then((response) => {
+        this.props.dispatch(wordAction.deleteWord(response.data));
+      }).catch((error) => {
+        throw new SubmissionError({
+          _error: "Submission Error - Please make sure that you're logged in"
+        });
+      });
+    }
   }
 
   render() {
@@ -104,12 +112,7 @@ class WordRow extends React.Component {
             </Modal.Header>
             <Modal.Body>
               <WordForm onSubmit={this.handleSubmit} onHide={this.handleHideModal}/>
-            </Modal.Body>
-            <Modal.Footer>
-                <p className="text-right">
-                  <button onClick={this.handleDelete} className="text-right btn btn-brand-accent waves-attach waves-light" type="button">DELETE</button>
-                </p>
-            </Modal.Footer>
+            </Modal.Body>            
           </Modal>
         </td>
       </tr>

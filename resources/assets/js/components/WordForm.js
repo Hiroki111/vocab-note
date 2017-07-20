@@ -45,6 +45,11 @@ const renderField = ({
   </div>
 )
 
+@connect((store) => {
+  return {
+    word: store.word.word,
+  }
+})
 class WordForm extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +57,7 @@ class WordForm extends React.Component {
 
   render() {
     const {
+      error,
       handleSubmit,
       pristine,
       reset,
@@ -70,9 +76,24 @@ class WordForm extends React.Component {
           <p className="text-right">
             <button onClick={reset} className="btn btn-flat btn-green btn-brand waves-attach waves-effect" type="button">Reset</button>
             <button onClick={this.props.onHide} className="btn btn-flat btn-red btn-brand waves-attach waves-effect" type="button">Close</button>
-            <button onClick={handleSubmit} className="btn btn-flat btn-brand waves-attach waves-effect" type="submit" disabled={submitting}>Save</button>
+            <button onClick={handleSubmit(values =>
+              this.props.onSubmit({
+                ...values,
+                type:'update'
+              }))} className="btn btn-flat btn-brand waves-attach waves-effect" type="submit" disabled={submitting}>Save</button>
           </p>
+          {this.props.word.id && 
+            <p className="text-right">
+              <button onClick={handleSubmit(values =>
+                this.props.onSubmit({
+                  ...values,
+                  type:'delete'
+                }))} className="text-right btn btn-brand-accent waves-attach waves-light" type="button">DELETE</button>
+            </p>
+          }
         </div>
+        
+        {error && <strong>{error}</strong>}
       </form>
     )
   }

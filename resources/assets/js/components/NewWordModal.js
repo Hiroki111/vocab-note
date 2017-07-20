@@ -7,6 +7,11 @@ import {
 	connect
 }
 from 'react-redux';
+import axios from 'axios';
+import {
+	SubmissionError
+}
+from 'redux-form';
 import * as wordAction from '../actions/wordActions';
 import WordForm from './WordForm';
 
@@ -44,25 +49,25 @@ class NewWordModal extends React.Component {
 		});
 	}
 	handleSubmit(values) {
-		fetch('/api/restricted/words/', {
-			method: 'POST',
+		return axios.post('/api/restricted/words/', {
+			word: values.word,
+			pronunciation: values.pronunciation,
+			type: values.type,
+			meaning: values.meaning,
+			example: values.example,
+		}, {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 				'Authorization': 'Bearer {' + this.props.token + '}',
-			},
-			body: JSON.stringify({
-				word: values.word,
-				pronunciation: values.pronunciation,
-				type: values.type,
-				meaning: values.meaning,
-				example: values.example,
-			}),
+			}
 		}).then((response) => {
-			response.json().then((jsonReponse) => {
-				this.props.dispatch(wordAction.addWord(jsonReponse));
-			});
+			this.props.dispatch(wordAction.addWord(response.data));
 			this.handleHideModal();
+		}).catch((error) => {
+			throw new SubmissionError({
+				_error: "Submission Error - Please make sure that you're logged in"
+			});
 		});
 	}
 

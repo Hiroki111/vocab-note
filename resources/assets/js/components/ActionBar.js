@@ -1,5 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {
+  connect
+}
+from 'react-redux';
 import * as wordAction from '../actions/wordActions';
 
 @connect((store) => {
@@ -11,10 +14,10 @@ export default class ActionBar extends React.Component {
   constructor(props) {
     super(props);
     this.clickCoverSwitch = this.clickCoverSwitch.bind(this);
-    this.sortRowsBy = this.sortRowsBy.bind(this);  
+    this.sortRowsBy = this.sortRowsBy.bind(this);
   }
 
-  clickCoverSwitch(){
+  clickCoverSwitch() {
     this.props.dispatch(wordAction.clickCoverSwitch(this.checkedCoverAll.checked));
   }
 

@@ -16,6 +16,7 @@ import {
 	SubmissionError
 }
 from 'redux-form';
+import axios from 'axios';
 import * as loginAction from '../actions/loginActions';
 
 class LoginModal extends React.Component {
@@ -39,23 +40,17 @@ class LoginModal extends React.Component {
 			showModal: false
 		});
 	}
+
 	handleSubmit(values) {
-		fetch('/api/tokenAuth', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email: values.email,
-				password: values.password,
-			}),
+		return axios.post('/api/tokenAuth', {
+			email: values.email,
+			password: values.password
 		}).then((response) => {
-			response.json().then((jsonReponse) => {
-				this.props.dispatch(loginAction.setToken(jsonReponse.token));
-			});
+			this.props.dispatch(loginAction.setToken(response.data.token));
 		}).catch((error) => {
-			this.handleHideModal();
+			throw new SubmissionError({
+				_error: 'Login failed - Wrong email address or password provided!'
+			});
 		});
 	}
 
