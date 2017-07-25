@@ -53,7 +53,7 @@ class WordRow extends React.Component {
     });
   }
   handleSubmit(values) {
-    if (values.type === "update") {
+    if (values.command === "update") {
       return axios.put('/api/restricted/words/' + this.props.word.id, {
         word: values.word,
         pronunciation: values.pronunciation,
@@ -75,7 +75,7 @@ class WordRow extends React.Component {
         });
       });
     }
-    else if (values.type === "delete") {
+    else if (values.command === "delete") {
       return axios.delete('/api/restricted/words/' + this.props.word.id, {
         headers: {
           'Accept': 'application/json',
@@ -101,10 +101,10 @@ class WordRow extends React.Component {
     return (
       <tr>
         <td onClick={this.flipRow.bind(this, this.props.word.id)}>{this.props.word.word}</td>
-        <td className={classes}>{this.props.word.pronunciation}</td>
-        <td className={classes}>{this.props.word.type}</td>
-        <td className={classes}>{this.props.word.meaning}</td>
-        <td className={classes}>{this.props.word.example}</td>
+        <td onClick={this.flipRow.bind(this, this.props.word.id)} className={classes}>{this.props.word.pronunciation}</td>
+        <td onClick={this.flipRow.bind(this, this.props.word.id)} className={classes}>{this.props.word.type}</td>
+        <td onClick={this.flipRow.bind(this, this.props.word.id)} className={classes}>{this.props.word.meaning}</td>
+        <td onClick={this.flipRow.bind(this, this.props.word.id)} className={classes}>{this.props.word.example}</td>
         <td>
           <button className="btn btn-primary btn-xs" onClick={this.handleShowModal}>*</button>
           <Modal show={this.state.showModal} onHide={this.handleHideModal}>

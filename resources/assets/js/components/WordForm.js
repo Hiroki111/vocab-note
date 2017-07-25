@@ -21,9 +21,6 @@ const validate = values => {
   if (!values.type) {
     errors.type = 'Required'
   }
-  if (!values.example) {
-    errors.example = 'Required'
-  }
   return errors
 }
 
@@ -79,7 +76,7 @@ class WordForm extends React.Component {
             <button onClick={handleSubmit(values =>
               this.props.onSubmit({
                 ...values,
-                type:'update'
+                command:'update'
               }))} className="btn btn-flat btn-brand waves-attach waves-effect" type="submit" disabled={submitting}>Save</button>
           </p>
           {this.props.word.id && 
@@ -87,7 +84,7 @@ class WordForm extends React.Component {
               <button onClick={handleSubmit(values =>
                 this.props.onSubmit({
                   ...values,
-                  type:'delete'
+                  command:'delete'
                 }))} className="text-right btn btn-brand-accent waves-attach waves-light" type="button">DELETE</button>
             </p>
           }
