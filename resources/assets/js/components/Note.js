@@ -1,14 +1,16 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {
+  connect
+}
+from 'react-redux';
 import ActionBar from './ActionBar';
 import Table from './Table';
 import * as wordAction from '../actions/wordActions';
 
 @connect((store) => {
   return {
-    words:store.word.words,
+    words: store.word.words,
     sortBy: store.word.sortBy,
-    coverAll: store.word.coverAll,
   }
 })
 export default class Note extends React.Component {
@@ -23,15 +25,12 @@ export default class Note extends React.Component {
   render() {
     return (
       <div className="card-inner margin-bottom-no">
-        <ActionBar 
-          coverAll={this.props.coverAll}
-        />
+        <ActionBar />
         <Table 
           words={this.props.words} 
           sortBy={this.props.sortBy} 
-          coverAll={this.props.coverAll}
         />
       </div>
-      );
+    );
   }
 }

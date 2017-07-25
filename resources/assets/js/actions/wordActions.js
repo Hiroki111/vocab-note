@@ -33,13 +33,6 @@ export function sortWords(order) {
 	};
 }
 
-export function clickCoverSwitch(clicked) {
-	return {
-		type: "COVER_WORDS",
-		data: clicked,
-	};
-}
-
 export function fetchWords() {
 	return function(dispatch) {
 		fetch('/api/words')

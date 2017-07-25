@@ -8,7 +8,6 @@ export default function wordReducer(state = {
 	},
 	words: [],
 	sortBy: "FO",
-	coverAll: true,
 }, action) {
 	switch (action.type) {
 		case "FETCH_WORDS":
@@ -71,14 +70,6 @@ export default function wordReducer(state = {
 				return {
 					...state,
 					sortBy: action.data,
-				}
-				break;
-			}
-		case "COVER_WORDS":
-			{
-				return {
-					...state,
-					coverAll: action.data,
 				}
 				break;
 			}

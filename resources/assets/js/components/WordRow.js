@@ -18,6 +18,7 @@ from 'redux-form';
 @connect((store) => {
   return {
     token: store.login.token,
+    coverAll: store.cover.coverAll,
   }
 })
 class WordRow extends React.Component {

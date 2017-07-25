@@ -4,7 +4,6 @@ import WordRow from './WordRow';
 export default class Table extends React.Component {
   render() {
     var rows = [];
-
     if (this.props.sortBy === "FN") {
       this.props.words.sort((a, b) =>
         b.id - a.id
@@ -41,7 +40,7 @@ export default class Table extends React.Component {
     }
 
     this.props.words.forEach((word) => {
-      rows.push(<WordRow key={word.id} word={word} coverAll={this.props.coverAll} />);
+      rows.push(<WordRow key={word.id} word={word} />);
     });
 
     return (
