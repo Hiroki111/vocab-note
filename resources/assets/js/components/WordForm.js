@@ -9,38 +9,8 @@ import {
 }
 from 'react-redux'
 import * as wordAction from '../actions/wordActions'
-
-const validate = values => {
-  const errors = {}
-  if (!values.word) {
-    errors.word = 'Required'
-  }
-  if (!values.meaning) {
-    errors.meaning = 'Required'
-  }
-  if (!values.type) {
-    errors.type = 'Required'
-  }
-  return errors
-}
-
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: {
-    touched,
-    error
-  }
-}) => (
-  <div className="form-group form-group-label control-highlight">
-    <label className="floating-label" htmlFor={"new_"+type}>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type}  className="form-control" id={"new_"+type} />
-      {touched && error && <span className="caution">{error}</span>}
-    </div>
-  </div>
-)
+import validate from "./WordValidation"
+import RenderField from "./RenderField"
 
 @connect((store) => {
   return {
@@ -63,11 +33,11 @@ class WordForm extends React.Component {
     return (
       <form onSubmit={handleSubmit}>
         <div className="modal-inner">
-          <Field name="word" type="text" component={renderField} label="Word/Phrase" />
-          <Field name="pronunciation" type="text" component={renderField} label="Pronunciation" />
-          <Field name="type" type="text" component={renderField} label="Type" />
-          <Field name="meaning" type="text" component={renderField} label="Meaning" />
-          <Field name="example" type="text" component={renderField} label="Example" />
+          <Field name="word" type="text" component={RenderField} label="Word/Phrase" />
+          <Field name="pronunciation" type="text" component={RenderField} label="Pronunciation" />
+          <Field name="type" type="text" component={RenderField} label="Type" />
+          <Field name="meaning" type="text" component={RenderField} label="Meaning" />
+          <Field name="example" type="text" component={RenderField} label="Example" />
         </div>
         <div className="modal-footer">
           <p className="text-right">
