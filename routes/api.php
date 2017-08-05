@@ -27,4 +27,6 @@ Route::group([
     Route::post('/words', 'WordController@store');
     Route::put('/words/{id}', 'WordController@update');
     Route::delete('/words/{id}', 'WordController@destroy');
+
+    Route::get('/dictionary/{word}', 'DictionaryController@searchWord');
 });

@@ -12,7 +12,7 @@ const RenderField = ({
   <div className="form-group form-group-label control-highlight">
     <label className="floating-label" htmlFor={"new_"+type}>{label}</label>
     <div>
-      <input {...input} placeholder={label} type={type}  className="form-control" id={"new_"+type} />
+      <input {...input} placeholder={label} type={type} className="form-control" id={"new_"+type} />
       {touched && error && <span className="caution">{error}</span>}
     </div>
   </div>

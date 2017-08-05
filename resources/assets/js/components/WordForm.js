@@ -9,12 +9,15 @@ import {
 }
 from 'react-redux'
 import * as wordAction from '../actions/wordActions'
+//The following const is used with reduxForm, and the name must be "validate"
 import validate from "./WordValidation"
 import RenderField from "./RenderField"
+import SearchButton from "./SearchButton"
 
 @connect((store) => {
   return {
     word: store.word.word,
+    token: store.login.token,
   }
 })
 class WordForm extends React.Component {
@@ -49,6 +52,9 @@ class WordForm extends React.Component {
                 command:'update'
               }))} className="btn btn-flat btn-brand waves-attach waves-effect" type="submit" disabled={submitting}>Save</button>
           </p>
+          {this.props.word.word && this.props.token && 
+            <SearchButton />
+          }
           {this.props.word.id && 
             <p className="text-right">
               <button onClick={handleSubmit(values =>
@@ -58,8 +64,7 @@ class WordForm extends React.Component {
                 }))} className="text-right btn btn-brand-accent waves-attach waves-light" type="button">DELETE</button>
             </p>
           }
-        </div>
-        
+        </div>        
         {error && <strong>{error}</strong>}
       </form>
     )
